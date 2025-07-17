@@ -1,0 +1,630 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PDP Milestone Infographic: Foundational Data Concepts</title>
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Montserrat:wght@700&display=swap" rel="stylesheet">
+    <style>
+        /* Devoteam-inspired Color Palette with Custom Accent */
+        :root {
+            --devoteam-dark-blue: #003366; /* Primary dark blue */
+            --devoteam-medium-blue: #0056b3; /* Medium blue for accents */
+            --devoteam-light-blue: #e6f2ff; /* Very light blue for backgrounds */
+            --custom-accent-color: #ff485b; /* New vibrant accent color */
+            --devoteam-text-dark: #334155;
+            --devoteam-text-medium: #475569;
+            --devoteam-text-light: #64748b;
+            --devoteam-border-light: #cbd5e1;
+            --devoteam-shadow-light: rgba(0, 0, 0, 0.08);
+            --devoteam-shadow-medium: rgba(0, 0, 0, 0.1);
+            --devoteam-shadow-strong: rgba(0, 0, 0, 0.15);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(180deg, var(--devoteam-light-blue) 0%, #dbeafe 100%); /* Light, airy gradient with Devoteam light blue */
+            color: var(--devoteam-text-dark); /* Darker gray for main text */
+            line-height: 1.6;
+            padding: 2rem 0;
+            display: flex;
+            justify-content: center;
+            min-height: 100vh;
+        }
+        .infographic-container {
+            position: relative; /* Added for fullscreen button positioning */
+            width: 100%;
+            max-width: 1000px; /* Wider for infographic content */
+            background-color: #ffffff;
+            border-radius: 1.5rem; /* Rounded corners */
+            box-shadow: 0 20px 50px var(--devoteam-shadow-strong); /* Stronger shadow */
+            padding: 3rem 2rem;
+            box-sizing: border-box;
+            overflow-x: hidden; /* Prevent horizontal scroll */
+        }
+        h1, h2, h3, h4 {
+            font-family: 'Montserrat', sans-serif; /* Distinct font for headings */
+            color: var(--devoteam-dark-blue); /* Dark blue-gray for headings */
+            margin-bottom: 1rem;
+        }
+        h1 {
+            font-size: 3.5rem;
+            font-weight: 800;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--devoteam-dark-blue); /* Darker blue for main title */
+        }
+        h2 {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-top: 3rem;
+            margin-bottom: 1.5rem;
+            text-align: center;
+            position: relative;
+            padding-bottom: 0.5rem;
+            color: var(--devoteam-medium-blue); /* Section titles in medium blue */
+        }
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80px;
+            height: 4px;
+            background-color: var(--custom-accent-color); /* Custom accent line */
+            border-radius: 2px;
+        }
+        h3 {
+            font-size: 1.75rem;
+            font-weight: 600;
+            margin-top: 2.5rem;
+            margin-bottom: 1rem;
+            color: var(--devoteam-medium-blue); /* Medium blue for section titles */
+        }
+        h4 {
+            font-size: 1.35rem;
+            font-weight: 600;
+            margin-top: 1.5rem;
+            margin-bottom: 0.75rem;
+            color: var(--devoteam-dark-blue); /* Dark blue for sub-sections */
+        }
+        .section-card {
+            background-color: #fefefe; /* Slightly off-white for card background */
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2.5rem;
+            box-shadow: 0 8px 20px var(--devoteam-shadow-light); /* Subtle shadow for cards */
+            border: 1px solid var(--devoteam-border-light);
+        }
+        .key-points-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); /* Responsive grid for points */
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+        .key-point-item {
+            background-color: #ffffff;
+            border-radius: 0.75rem;
+            padding: 1.25rem;
+            box-shadow: 0 4px 10px var(--devoteam-shadow-light);
+            display: flex;
+            align-items: flex-start;
+            text-align: left;
+            border: 1px solid var(--devoteam-border-light);
+        }
+        .key-point-item .icon {
+            flex-shrink: 0;
+            margin-right: 0.75rem;
+            font-size: 1.5rem;
+            color: var(--custom-accent-color); /* Custom accent color for icons */
+        }
+        .key-point-item p {
+            font-size: 0.95rem;
+            color: var(--devoteam-text-medium);
+        }
+        .what-i-learned {
+            margin-top: 2rem;
+            font-style: italic;
+            text-align: center;
+            font-size: 1.15rem;
+            color: var(--devoteam-text-medium);
+            padding: 1.5rem;
+            background-color: var(--devoteam-light-blue); /* Light blue background */
+            border-left: 6px solid var(--custom-accent-color); /* Stronger custom accent */
+            border-radius: 0.75rem;
+            box-shadow: 0 4px 12px var(--devoteam-shadow-medium);
+            line-height: 1.7;
+            font-weight: 500;
+        }
+        .sub-section-header {
+            display: flex;
+            align-items: center;
+            margin-top: 2rem;
+            margin-bottom: 1rem;
+            color: var(--devoteam-dark-blue); /* Dark blue for sub-section headers */
+        }
+        .sub-section-header .icon {
+            font-size: 1.8rem;
+            margin-right: 0.75rem;
+            color: var(--custom-accent-color); /* Custom accent color for icons */
+        }
+        .sub-section-content ul {
+            list-style: none;
+            padding-left: 0;
+        }
+        .sub-section-content li {
+            margin-bottom: 0.5rem;
+            padding-left: 1.5rem;
+            position: relative;
+            font-size: 1rem;
+            color: var(--devoteam-text-medium);
+        }
+        .sub-section-content li::before {
+            content: '•';
+            color: var(--devoteam-medium-blue); /* Medium blue bullet */
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+
+        /* Specific styling for the 5-Slide Outline */
+        .outline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1rem;
+            margin-top: 1.5rem;
+        }
+        .outline-item {
+            background-color: #f8fbff; /* Very light blue for outline items */
+            border: 1px solid var(--devoteam-border-light);
+            border-radius: 0.75rem;
+            padding: 1rem;
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            min-height: 120px; /* Ensure consistent height */
+            box-shadow: 0 2px 5px rgba(0,0,0,0.03);
+        }
+        .outline-item strong {
+            display: block;
+            font-size: 1rem;
+            font-weight: 700;
+            color: var(--devoteam-medium-blue); /* Medium blue for outline titles */
+            margin-bottom: 0.5rem;
+        }
+        .outline-item p {
+            font-size: 0.85rem;
+            color: var(--devoteam-text-medium);
+        }
+
+        .closing-section {
+            text-align: center;
+            margin-top: 4rem;
+            padding-top: 2rem;
+            border-top: 2px dashed var(--devoteam-border-light);
+        }
+        .closing-section .highlight-list {
+            list-style: none;
+            padding: 0;
+            margin: 1.5rem auto 2rem auto;
+            max-width: 600px;
+            font-size: 1.2rem;
+            font-weight: 500;
+            color: var(--devoteam-text-dark);
+        }
+        .closing-section .highlight-list li {
+            margin-bottom: 0.75rem;
+            padding-left: 1.5rem;
+            position: relative;
+        }
+        .closing-section .highlight-list li::before {
+            content: '✓';
+            color: #10b981; /* Green checkmark for success/highlights */
+            position: absolute;
+            left: 0;
+            font-weight: bold;
+        }
+        .thank-you {
+            font-size: 3.5rem;
+            font-weight: 800;
+            color: var(--devoteam-dark-blue);
+            margin-top: 2rem;
+            animation: pulse 2s infinite cubic-bezier(0.4, 0, 0.6, 1);
+        }
+        @keyframes pulse {
+            0%, 100% { opacity: 1; }
+            50% { opacity: .5; }
+        }
+
+        /* Fullscreen button styling */
+        #fullscreenBtn {
+            position: absolute;
+            top: 1.5rem;
+            right: 1.5rem;
+            background-color: var(--custom-accent-color);
+            color: white;
+            border: none;
+            border-radius: 0.5rem;
+            padding: 0.75rem 1rem;
+            font-size: 1rem;
+            font-weight: 600;
+            cursor: pointer;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            z-index: 20; /* Ensure it's above other content */
+        }
+        #fullscreenBtn:hover {
+            background-color: #e03f4f; /* Slightly darker shade on hover */
+            transform: translateY(-2px);
+        }
+        #fullscreenBtn:active {
+            transform: translateY(0);
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Responsive adjustments */
+        @media (max-width: 768px) {
+            .infographic-container {
+                padding: 2rem 1rem;
+                border-radius: 1rem;
+            }
+            h1 { font-size: 2.5rem; }
+            h2 { font-size: 2rem; margin-top: 2.5rem; }
+            h3 { font-size: 1.5rem; margin-top: 2rem; }
+            h4 { font-size: 1.2rem; margin-top: 1rem; }
+            .section-card { padding: 1.5rem; margin-bottom: 2rem; }
+            .key-points-grid { grid-template-columns: 1fr; gap: 1rem; }
+            .key-point-item { padding: 1rem; }
+            .key-point-item p { font-size: 0.9rem; }
+            .what-i-learned { font-size: 1rem; padding: 1rem; margin-top: 1.5rem; }
+            .outline-grid { grid-template-columns: repeat(auto-fit, minmax(140px, 1fr)); }
+            .outline-item { min-height: 100px; padding: 0.8rem; }
+            .outline-item strong { font-size: 0.9rem; }
+            .outline-item p { font-size: 0.75rem; }
+            .closing-section .highlight-list { font-size: 1.1rem; }
+            .thank-you { font-size: 2.5rem; }
+            #fullscreenBtn {
+                top: 1rem;
+                right: 1rem;
+                padding: 0.6rem 0.8rem;
+                font-size: 0.9rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .infographic-container {
+                padding: 1.5rem 0.75rem;
+            }
+            h1 { font-size: 2rem; }
+            h2 { font-size: 1.75rem; margin-top: 2rem; }
+            h3 { font-size: 1.3rem; margin-top: 1.5rem; }
+            h4 { font-size: 1.1rem; margin-top: 0.8rem; }
+            .section-card { padding: 1rem; margin-bottom: 1.5rem; }
+            .key-point-item { padding: 0.8rem; }
+            .key-point-item .icon { font-size: 1.2rem; margin-right: 0.5rem; }
+            .key-point-item p { font-size: 0.85rem; }
+            .what-i-learned { font-size: 0.9rem; padding: 0.8rem; margin-top: 1rem; }
+            .outline-grid { gap: 0.75rem; }
+            .outline-item { min-height: 80px; padding: 0.6rem; }
+            .outline-item strong { font-size: 0.8rem; }
+            .outline-item p { font-size: 0.7rem; }
+            .closing-section .highlight-list { font-size: 1rem; }
+            .thank-you { font-size: 2rem; }
+            #fullscreenBtn {
+                top: 0.75rem;
+                right: 0.75rem;
+                padding: 0.5rem 0.7rem;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="infographic-container" id="infographicContainer">
+        <!-- Fullscreen Button -->
+        <button id="fullscreenBtn">Toggle Fullscreen</button>
+
+        <!-- Main Title Section -->
+        <header class="text-center mb-10">
+            <h1 style="color: var(--devoteam-dark-blue);">PDP Milestone Infographic</h1>
+            <p class="text-2xl font-medium mt-4" style="color: var(--devoteam-text-dark);">Foundational Data Concepts</p>
+            <p class="text-lg mt-2" style="color: var(--devoteam-text-medium);">Presented by: [Your Name]</p>
+            <p class="text-md mt-1" style="color: var(--devoteam-text-light);">Key Learnings from Udemy Courses</p>
+        </header>
+
+        <!-- Course 1: Data Warehousing -->
+        <section class="section-card">
+            <h2 style="color: var(--devoteam-medium-blue);">1. Data Warehousing: The Ultimate Guide</h2>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">💡</span><h3 style="color: var(--devoteam-medium-blue);">Key Concepts & Learning Objectives</h3>
+            </div>
+            <div class="key-points-grid">
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">🏛️</span><p style="color: var(--devoteam-text-medium);"><strong>End-to-End Architecture:</strong> Staging, ODS, presentation/data marts; OLTP vs. OLAP.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">📐</span><p style="color: var(--devoteam-text-medium);"><strong>Dimensional Modeling:</strong> Facts vs. dimensions; star/snowflake schemas; SCD (Types 0-3); surrogate keys.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">🔄</span><p style="color: var(--devoteam-text-medium);"><strong>ETL/ELT Processes:</strong> Initial & delta loads; transform mappings; batch vs. streaming; orchestration.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">☁️</span><p style="color: var(--devoteam-text-medium);"><strong>Modern DW Infrastructure:</strong> Cloud-native (AWS Redshift, PostgreSQL); MPP; in-memory DBs; columnar storage; OLAP cubes.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">🛠️</span><p style="color: var(--devoteam-text-medium);"><strong>Hands-On Case Study:</strong> Ingest via Airbyte, transform with Pentaho Kettle, store in AWS PostgreSQL/Redshift.</p></div>
+            </div>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">🚀</span><h3 style="color: var(--devoteam-medium-blue);">Practical Applications</h3>
+            </div>
+            <ul class="sub-section-content">
+                <li style="color: var(--devoteam-text-medium);">Rapid ingestion of CSV/JSON into staging schemas with Airbyte.</li>
+                <li style="color: var(--devoteam-text-medium);">Implement SCD Type 2 flows to track history in dimensions.</li>
+                <li style="color: var(--devoteam-text-medium);">Design Sales star schema linking fact and dimension tables.</li>
+                <li style="color: var(--devoteam-text-medium);">Tune performance using columnar storage and bitmap/B-tree indexes.</li>
+            </ul>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">🔗</span><h3 style="color: var(--devoteam-medium-blue);">Frameworks, Tools & Best Practices</h3>
+            </div>
+            <ul class="sub-section-content">
+                <li style="color: var(--devoteam-text-medium);">**Kimball Lifecycle**: Requirements → conformed dimensions → ETL → presentation.</li>
+                <li style="color: var(--devoteam-text-medium);">**Tools**: Ingestion: Airbyte; Transformation: Pentaho Kettle; Storage: AWS PostgreSQL/Redshift; Orchestration: Airflow/cron.</li>
+                <li style="color: var(--devoteam-text-medium);">**Best Practices**: Modular jobs, metadata-driven design, idempotent loads, validation checks.</li>
+            </ul>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">📝</span><h3 style="color: var(--devoteam-medium-blue);">5-Slide Outline Snapshot</h3>
+            </div>
+            <div class="outline-grid">
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">1. Why DW?</strong><p style="color: var(--devoteam-text-medium);">OLTP vs. OLAP; BI value; unified view</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">2. DW Arch.</strong><p style="color: var(--devoteam-text-medium);">Staging/ODS/Data Marts; cloud vs. on-prem</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">3. Dim. Modeling</strong><p style="color: var(--devoteam-text-medium);">Facts vs. Dims; star/snowflake; SCD types</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">4. ETL/ELT</strong><p style="color: var(--devoteam-text-medium);">Extract; Transform; Load; Airbyte + Pentaho</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">5. Advanced</strong><p style="color: var(--devoteam-text-medium);">Columnar storage; indexes; OLAP cubes</p></div>
+            </div>
+
+            <p class="what-i-learned" style="background-color: var(--devoteam-light-blue); border-left-color: var(--custom-accent-color); color: var(--devoteam-text-medium);">
+                “I mastered architecting a cloud-native data warehouse end-to-end: from layering and dimensional modeling through full ETL pipelines with Airbyte and Pentaho, to advanced performance tuning via columnar engines and indexing. This equips me to build robust analytics platforms.”
+            </p>
+        </section>
+
+        <!-- Course 2: Data Integration Fundamentals -->
+        <section class="section-card">
+            <h2 style="color: var(--devoteam-medium-blue);">2. Data Integration Fundamentals</h2>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">💡</span><h3 style="color: var(--devoteam-medium-blue);">Key Concepts & Learning Objectives</h3>
+            </div>
+            <div class="key-points-grid">
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">🔗</span><p style="color: var(--devoteam-text-medium);"><strong>Integration Types:</strong> B2B (EDI/X12, EDIFACT); Application (SOAP, REST, Webhooks); Database (ETL vs. ELT; data lakes; CDC).</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">🔒</span><p style="color: var(--devoteam-text-medium);"><strong>Protocols & Formats:</strong> Secure FTP/SFTP, AS2; XML, JSON, CSV; message queues.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">⏱️</span><p style="color: var(--devoteam-text-medium);"><strong>Batch vs. Streaming:</strong> Scheduling; real-time pipelines with Kafka.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">🧑‍💻</span><p style="color: var(--devoteam-text-medium);"><strong>Career Context:</strong> Roles from operations to architecture.</p></div>
+            </div>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">🚀</span><h3 style="color: var(--devoteam-medium-blue);">Practical Applications</h3>
+            </div>
+            <ul class="sub-section-content">
+                <li style="color: var(--devoteam-text-medium);">Automate supplier invoicing via AS2 EDI mappings.</li>
+                <li style="color: var(--devoteam-text-medium);">Build RESTful synchronization between Salesforce and SAP.</li>
+                <li style="color: var(--devoteam-text-medium);">Implement CDC replication using Kafka connectors.</li>
+                <li style="color: var(--devoteam-text-medium);">Deploy a hybrid stack: MuleSoft for APIs, AWS Glue for ETL, S3 data lake.</li>
+            </ul>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">🔗</span><h3 style="color: var(--devoteam-medium-blue);">Frameworks, Tools & Best Practices</h3>
+            </div>
+            <ul class="sub-section-content">
+                <li style="color: var(--devoteam-text-medium);">**Patterns**: File-based vs. message-based; request/response vs. pub/sub.</li>
+                <li style="color: var(--devoteam-text-medium);">**Tools**: Sterling B2B Integrator, GoAnywhere MFT, Apigee, Kong, AWS API Gateway, Talend, Kafka, AWS Glue.</li>
+                <li style="color: var(--devoteam-text-medium);">**Best Practices**: Idempotent APIs; schema versioning; centralized logging; SLA/SLI monitoring; error-queue handling.</li>
+            </ul>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">📝</span><h3 style="color: var(--devoteam-medium-blue);">5-Slide Outline Snapshot</h3>
+            </div>
+            <div class="outline-grid">
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">1. Why Integrate?</strong><p style="color: var(--devoteam-text-medium);">Agility; data silos; cost vs. value</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">2. B2B Integration</strong><p style="color: var(--devoteam-text-medium);">EDI standards; FTP/AS2; mapping</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">3. App Integration</strong><p style="color: var(--devoteam-text-medium);">SOAP vs. REST; webhooks; API gateways</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">4. DB Integration</strong><p style="color: var(--devoteam-text-medium);">ETL vs. ELT; data lakes; CDC</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">5. Tools & BP</strong><p style="color: var(--devoteam-text-medium);">Pattern selection; monitoring; governance</p></div>
+            </div>
+
+            <p class="what-i-learned" style="background-color: var(--devoteam-light-blue); border-left-color: var(--custom-accent-color); color: var(--devoteam-text-medium);">
+                “I now have a taxonomy of integration types and hands-on skills to implement secure EDI, robust APIs, and scalable ETL/CDC pipelines.”
+            </p>
+        </section>
+
+        <!-- Course 3: Data Integration Guide -->
+        <section class="section-card">
+            <h2 style="color: var(--devoteam-medium-blue);">3. Data Integration Guide</h2>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">💡</span><h3 style="color: var(--devoteam-medium-blue);">Key Concepts & Learning Objectives</h3>
+            </div>
+            <div class="key-points-grid">
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">🗺️</span><p style="color: var(--devoteam-text-medium);"><strong>Integration Paradigms:</strong> ETL, ESB, EDI, API-Driven patterns.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">🔌</span><p style="color: var(--devoteam-text-medium);"><strong>Connectors & Mechanisms:</strong> JDBC/ODBC; flat-file; SOAP/REST; SAP IDoc; Salesforce APIs.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">🛡️</span><p style="color: var(--devoteam-text-medium);"><strong>Security & Architecture:</strong> HA clustering; encryption at rest/in transit; cloud deployment.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">✅</span><p style="color: var(--devoteam-text-medium);"><strong>Data Integration Project Framework (DIPF):</strong> 7-step lifecycle from scoping to Run.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">📈</span><p style="color: var(--devoteam-text-medium);"><strong>Operations & Governance:</strong> Monitoring, incident management, vendor support, licensing.</p></div>
+            </div>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">🚀</span><h3 style="color: var(--devoteam-medium-blue);">Practical Applications</h3>
+            </div>
+            <ul class="sub-section-content">
+                <li style="color: var(--devoteam-text-medium);">Design an ESB layer for microservices order orchestration.</li>
+                <li style="color: var(--devoteam-text-medium);">Build batch ETL jobs with NiFi into AWS S3 data lake.</li>
+                <li style="color: var(--devoteam-text-medium);">Expose OAuth2-secured REST endpoints for real-time inventory checks.</li>
+                <li style="color: var(--devoteam-text-medium);">Apply DIPF to prototype and industrialize a client onboarding MVP.</li>
+                <li style="color: var(--devoteam-text-medium);">Set up Prometheus/Grafana for monitoring and failover run-books.</li>
+            </ul>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">🔗</span><h3 style="color: var(--devoteam-medium-blue);">Frameworks, Tools & Best Practices</h3>
+            </div>
+            <ul class="sub-section-content">
+                <li style="color: var(--devoteam-text-medium);">**DIPF**: Ask questions → Feasibility → Architecture → MVP → Industrialization → Methodology → Run.</li>
+                <li style="color: var(--devoteam-text-medium);">**Pattern Catalog**: Choose file, bus, ESB, or API based on latency and volume.</li>
+                <li style="color: var(--devoteam-text-medium);">**Connector Strategy**: Prefer native adapters; fallback to JDBC/FTP.</li>
+                <li style="color: var(--devoteam-text-medium);">**Security**: Enforce TLS; active-active clusters; private networking.</li>
+                <li style="color: var(--devoteam-text-medium);">**Governance**: Evaluate Apache Camel/Talend vs. Informatica/MuleSoft on TCO and SLAs.</li>
+            </ul>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">📝</span><h3 style="color: var(--devoteam-medium-blue);">5-Slide Outline Snapshot</h3>
+            </div>
+            <div class="outline-grid">
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">1. Why Enterprise?</strong><p style="color: var(--devoteam-text-medium);">Digital transform; ROI; data timeliness</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">2. Integration Patterns</strong><p style="color: var(--devoteam-text-medium);">ETL vs. ESB vs. EDI vs. API; trade-offs</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">3. Connectors & Arch.</strong><p style="color: var(--devoteam-text-medium);">DB, file, SaaS adapters; HA & security</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">4. DIPF Framework</strong><p style="color: var(--devoteam-text-medium);">7-step lifecycle; MVP & industrialization</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">5. Ops & Solutions</strong><p style="color: var(--devoteam-text-medium);">Monitoring; open-source vs. proprietary</p></div>
+            </div>
+
+            <p class="what-i-learned" style="background-color: var(--devoteam-light-blue); border-left-color: var(--custom-accent-color); color: var(--devoteam-text-medium);">
+                “This guide provided a vendor-neutral blueprint—patterns, connectors, security, and a lifecycle framework—ensuring sustainable, high-value integration solutions.”
+            </p>
+        </section>
+
+        <!-- Course 4: Data Quality Masterclass -->
+        <section class="section-card">
+            <h2 style="color: var(--devoteam-medium-blue);">4. Data Quality Masterclass – The Complete Course</h2>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">💡</span><h3 style="color: var(--devoteam-medium-blue);">Key Concepts & Learning Objectives</h3>
+            </div>
+            <div class="key-points-grid">
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">📉</span><p style="color: var(--devoteam-text-medium);"><strong>DQ Fundamentals:</strong> Definitions; impact and cost of poor quality; real-world case studies.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">📏</span><p style="color: var(--devoteam-text-medium);"><strong>6 DQ Dimensions:</strong> Accuracy, Validity, Timeliness, Completeness, Uniqueness, Consistency.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">📜</span><p style="color: var(--devoteam-text-medium);"><strong>DQ Rules:</strong> Definition; 6-step implementation; practical examples.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">🔬</span><p style="color: var(--devoteam-text-medium);"><strong>DQ Techniques:</strong> Profiling, parsing, standardization, cleansing, enhancement, identity resolution, monitoring.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">👥</span><p style="color: var(--devoteam-text-medium);"><strong>DQ Roles:</strong> Manager, Owner, Steward, Custodian, Consumer.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">⚙️</span><p style="color: var(--devoteam-text-medium);"><strong>DQ Process:</strong> Define goals → Profile & Assess → Root-Cause Analysis → Remediate → Monitor & Control.</p></div>
+                <div class="key-point-item"><span class="icon" style="color: var(--custom-accent-color);">✅</span><p style="color: var(--devoteam-text-medium);"><strong>DQ Tools & Best Practices:</strong> Gartner Magic Quadrant vendors; tool selection criteria; top 5 best practices; governance integration.</p></div>
+            </div>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">🚀</span><h3 style="color: var(--devoteam-medium-blue);">Practical Applications</h3>
+            </div>
+            <ul class="sub-section-content">
+                <li style="color: var(--devoteam-text-medium);">Profile customer files to detect duplicates and missing fields.</li>
+                <li style="color: var(--devoteam-text-medium);">Implement parsing & standardization for addresses and phone numbers.</li>
+                <li style="color: var(--devoteam-text-medium);">Define and automate DQ rules in order processing (non-null, valid codes).</li>
+                <li style="color: var(--devoteam-text-medium);">Link records across CRM and ERP using identity resolution for golden records.</li>
+                <li style="color: var(--devoteam-text-medium);">Build DQ dashboards tracking KPIs and alerting on violations.</li>
+            </ul>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">🔗</span><h3 style="color: var(--devoteam-medium-blue);">Frameworks, Tools & Best Practices</h3>
+            </div>
+            <ul class="sub-section-content">
+                <li style="color: var(--devoteam-text-medium);">**DQ Lifecycle**: Define goals; Profile; Assess; Remediate; Monitor.</li>
+                <li style="color: var(--devoteam-text-medium);">**Tool Criteria**: Scalability, real-time profiling, transformation libraries, catalog integration, collaborative interfaces.</li>
+                <li style="color: var(--devoteam-text-medium);">**Best Practices**: Shift-left checks; central rule repository; executive-sponsored DQ Council; KPI-driven SLAs; continuous refinement.</li>
+            </ul>
+
+            <div class="sub-section-header">
+                <span class="icon" style="color: var(--custom-accent-color);">📝</span><h3 style="color: var(--devoteam-medium-blue);">5-Slide Outline Snapshot</h3>
+            </div>
+            <div class="outline-grid">
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">1. Why DQ Matters</strong><p style="color: var(--devoteam-text-medium);">Business impact; cost of errors; case study</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">2. Core DQ Dims</strong><p style="color: var(--devoteam-text-medium);">Accuracy, Validity, Completeness, etc.</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">3. DQ Rules & Tech</strong><p style="color: var(--devoteam-text-medium);">Defining rules; profiling; parsing; identity resolution</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">4. DQ Roles & Process</strong><p style="color: var(--devoteam-text-medium);">Stakeholder roles; 5-step DQ process</p></div>
+                <div class="outline-item"><strong style="color: var(--devoteam-medium-blue);">5. Tools & BP</strong><p style="color: var(--devoteam-text-medium);">Gartner vendors; top 5 best practices; governance</p></div>
+            </div>
+
+            <p class="what-i-learned" style="background-color: var(--devoteam-light-blue); border-left-color: var(--custom-accent-color); color: var(--devoteam-text-medium);">
+                “This masterclass gave me a complete framework and toolkit to build governed, scalable data quality systems that ensure data is fit for purpose.”
+            </p>
+        </section>
+
+        <!-- Closing Section -->
+        <section class="closing-section">
+            <h2 style="color: var(--devoteam-medium-blue);">Summary & Next Steps</h2>
+            <p class="text-xl font-medium mt-4" style="color: var(--devoteam-text-dark);">
+                These four courses have equipped me with end-to-end capabilities:
+            </p>
+            <ul class="highlight-list">
+                <li style="color: var(--devoteam-text-dark);">Designing warehouses</li>
+                <li style="color: var(--devoteam-text-dark);">Integrating data across systems</li>
+                <li style="color: var(--devoteam-text-dark);">Ensuring data quality</li>
+            </ul>
+            <p class="text-xl font-medium mt-8" style="color: var(--devoteam-text-dark);">
+                I’m excited to apply these learnings in our upcoming consulting engagements.
+            </p>
+            <p class="thank-you" style="color: var(--devoteam-dark-blue);">Thank You!</p>
+            <p class="text-2xl mt-4 font-semibold" style="color: var(--devoteam-text-dark);">Questions?</p>
+        </section>
+    </div>
+
+    <script>
+        const infographicContainer = document.getElementById('infographicContainer');
+        const fullscreenBtn = document.getElementById('fullscreenBtn');
+
+        /**
+         * Toggles fullscreen mode for the infographic container.
+         */
+        function toggleFullscreen() {
+            if (!document.fullscreenElement) {
+                // If not in fullscreen, request fullscreen
+                if (infographicContainer.requestFullscreen) {
+                    infographicContainer.requestFullscreen();
+                } else if (infographicContainer.mozRequestFullScreen) { /* Firefox */
+                    infographicContainer.mozRequestFullScreen();
+                } else if (infographicContainer.webkitRequestFullscreen) { /* Chrome, Safari & Opera */
+                    infographicContainer.webkitRequestFullscreen();
+                } else if (infographicContainer.msRequestFullscreen) { /* IE/Edge */
+                    infographicContainer.msRequestFullscreen();
+                }
+            } else {
+                // If in fullscreen, exit fullscreen
+                if (document.exitFullscreen) {
+                    document.exitFullscreen();
+                } else if (document.mozCancelFullScreen) { /* Firefox */
+                    document.mozCancelFullScreen();
+                } else if (document.webkitExitFullscreen) { /* Chrome, Safari and Opera */
+                    document.webkitExitFullscreen();
+                } else if (document.msExitFullscreen) { /* IE/Edge */
+                    document.msExitFullscreen();
+                }
+            }
+        }
+
+        // Add event listener to the fullscreen button
+        fullscreenBtn.addEventListener('click', toggleFullscreen);
+
+        // Optional: Update button text based on fullscreen state (for better UX)
+        document.addEventListener('fullscreenchange', () => {
+            if (document.fullscreenElement) {
+                fullscreenBtn.textContent = 'Exit Fullscreen';
+            } else {
+                fullscreenBtn.textContent = 'Toggle Fullscreen';
+            }
+        });
+        document.addEventListener('mozfullscreenchange', () => {
+            if (document.mozFullScreenElement) {
+                fullscreenBtn.textContent = 'Exit Fullscreen';
+            } else {
+                fullscreenBtn.textContent = 'Toggle Fullscreen';
+            }
+        });
+        document.addEventListener('webkitfullscreenchange', () => {
+            if (document.webkitFullscreenElement) {
+                fullscreenBtn.textContent = 'Exit Fullscreen';
+            } else {
+                fullscreenBtn.textContent = 'Toggle Fullscreen';
+            }
+        });
+        document.addEventListener('msfullscreenchange', () => {
+            if (document.msFullscreenElement) {
+                fullscreenBtn.textContent = 'Exit Fullscreen';
+            } else {
+                fullscreenBtn.textContent = 'Toggle Fullscreen';
+            }
+        });
+    </script>
+</body>
+</html>
